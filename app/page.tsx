@@ -1,8 +1,8 @@
 // components/EpisodeViewer.tsx
 import React, { useState, useEffect } from "react";
-import SearchBar from "./SearchBar";
-import EpisodeList from "./EpisodeList";
-import { Episode, Character } from "@/types";
+import SearchBar from "../components/SearchBar";
+import EpisodeList from "../components/EpisodeList";
+import { Episode, Character } from "@/Types";
 
 interface EpisodeViewerProps {
   fetchEpisodes: (
