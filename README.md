@@ -2,7 +2,8 @@
 
 A responsive web application built with Next.js that allows users to browse and search episodes from the Rick and Morty TV series. This project was created as part of the NETPIPO Front-End Intern Evaluation.
 
-![Rick and Morty Episode Viewer](https://rickandmortyapi.com/api/placeholder/400/300)
+![Rick and Morty Episode Viewer](./public/web.png)
+![Rick and Morty Episode Viewer](./public/mobile.png)
 
 ## 🚀 Features
 
