@@ -1,36 +1,45 @@
-// components/EpisodeCard.tsx
+"use client";
+
 import React from "react";
+import { Calendar, Users } from "lucide-react";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Calendar, Users } from "lucide-react";
-import CharacterAvatar from "./CharacterAvatar";
-import { Episode, Character } from "@/Types";
-
-const getSeasonEpisode = (code: string) => {
-  const match = code.match(/S(\d{2})E(\d{2})/);
-  return match ? { season: parseInt(match[1]) } : { season: 0 };
-};
+import { Episode, Character } from "@/types";
+import { CharacterAvatar } from "./CharacterAvatar";
 
 interface EpisodeCardProps {
   episode: Episode;
   characters: Record<string, Character>;
 }
 
-const EpisodeCard: React.FC<EpisodeCardProps> = ({ episode, characters }) => {
+export const EpisodeCard = ({ episode, characters }: EpisodeCardProps) => {
+  const getSeasonEpisode = (code: string) => {
+    const match = code.match(/S(\d{2})E(\d{2})/);
+    if (match) {
+      return { season: parseInt(match[1]), episode: parseInt(match[2]) };
+    }
+    return { season: 0, episode: 0 };
+  };
+
   const { season } = getSeasonEpisode(episode.episode);
 
   return (
-    <Card className="bg-gray-800 border-gray-700 hover:border-green-400 transition-all duration-300">
-      <CardHeader>
+    <Card className="bg-gray-800 border-gray-700 hover:border-green-400 transition-all duration-300 group">
+      <CardHeader className="pb-4">
         <div className="flex justify-between items-start mb-2">
-          <Badge className="bg-green-400/20 text-green-400">
+          <Badge
+            variant="secondary"
+            className="bg-green-400/20 text-green-400 hover:bg-green-400/30"
+          >
             {episode.episode}
           </Badge>
-          <Badge className="border-gray-600 text-gray-400">
+          <Badge variant="outline" className="border-gray-600 text-gray-400">
             Season {season}
           </Badge>
         </div>
-        <CardTitle className="text-xl text-white">{episode.name}</CardTitle>
+        <CardTitle className="text-xl text-white group-hover:text-green-400 transition-colors">
+          {episode.name}
+        </CardTitle>
       </CardHeader>
       <CardContent>
         <div className="space-y-4">
@@ -38,7 +47,8 @@ const EpisodeCard: React.FC<EpisodeCardProps> = ({ episode, characters }) => {
             <Calendar className="h-4 w-4" />
             <span>{episode.air_date}</span>
           </div>
-          <div>
+
+          <div className="space-y-2">
             <div className="flex items-center gap-2 text-gray-400">
               <Users className="h-4 w-4" />
               <span>Featured Characters:</span>
@@ -47,8 +57,8 @@ const EpisodeCard: React.FC<EpisodeCardProps> = ({ episode, characters }) => {
               {episode.characters.slice(0, 3).map((charUrl, idx) => (
                 <CharacterAvatar
                   key={idx}
-                  url={charUrl}
                   character={characters[charUrl]}
+                  loading={!characters[charUrl]}
                 />
               ))}
             </div>
@@ -58,5 +68,3 @@ const EpisodeCard: React.FC<EpisodeCardProps> = ({ episode, characters }) => {
     </Card>
   );
 };
-
-export default EpisodeCard;

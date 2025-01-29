@@ -1,45 +1,38 @@
-// components/EpisodeList.tsx
+"use client";
+
 import React from "react";
-import EpisodeCard from "./EpisodeCard";
-import Pagination from "./Pagination";
-import { Episode, Character } from "@/Types";
+import { EpisodeCard } from "./EpisodeCard";
+import { Episode, Character } from "@/types";
+import { Loader2 } from "lucide-react";
 
 interface EpisodeListProps {
   episodes: Episode[];
   characters: Record<string, Character>;
-  currentPage: number;
-  totalPages: number;
-  onPageChange: (page: number) => void;
+  loading: boolean;
 }
 
-const EpisodeList: React.FC<EpisodeListProps> = ({
+export const EpisodeList = ({
   episodes,
   characters,
-  currentPage,
-  totalPages,
-  onPageChange,
-}) => {
-  return (
-    <div className="space-y-6">
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {episodes.map((episode) => (
-          <EpisodeCard
-            key={episode.id}
-            episode={episode}
-            characters={characters}
-          />
-        ))}
+  loading,
+}: EpisodeListProps) => {
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center h-64">
+        <Loader2 className="h-12 w-12 animate-spin text-green-400" />
       </div>
+    );
+  }
 
-      {totalPages > 1 && (
-        <Pagination
-          currentPage={currentPage}
-          totalPages={totalPages}
-          onPageChange={onPageChange}
+  return (
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+      {episodes.map((episode) => (
+        <EpisodeCard
+          key={episode.id}
+          episode={episode}
+          characters={characters}
         />
-      )}
+      ))}
     </div>
   );
 };
-
-export default EpisodeList;
