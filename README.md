@@ -38,7 +38,7 @@ Before you begin, ensure you have the following installed:
 
 1. Clone the repository
 ```bash
-git clone https://github.com/your-username/rick-morty-viewer.git
+git clone https://github.com/911samuel/rick-morty-viewer.git
 cd rick-morty-viewer
 ```
 
@@ -72,11 +72,30 @@ rick-morty-viewer/
 │   ├── page.tsx
 │   └── layout.tsx
 ├── components/
-│   └── EpisodeViewer.tsx
+│   ├── ui/
+│   │   ├── CharacterAvatar.tsx
+│   │   ├── EpisodeCard.tsx
+│   │   ├── EpisodeList.tsx
+│   │   ├── Pagination.tsx
+│   │   └── SearchBar.tsx
+├── lib/
+│   ├── api.ts
+│   └── utils.ts
 ├── public/
-├── styles/
-│   └── globals.css
-└── package.json
+│   ├── mobile.png
+│   └── web.png
+├── types/
+│   └── index.ts
+├── .gitignore
+├── components.json
+├── eslint.config.mjs
+├── next-env.d.ts
+├── next.config.ts
+├── package-lock.json
+├── package.json
+├── postcss.config.mjs
+├── README.md
+└── tailwind.config.ts
 ```
 
 ## 🎯 Usage
@@ -107,8 +126,10 @@ This project is open source and available under the [MIT License](LICENSE).
 
 ## 👤 Author
 
-Your Name
-- GitHub: [@yourusername](https://github.com/yourusername)
+Abayizera Samuel  
+- GitHub: [@911samuel](https://github.com/911samuel)  
+- LinkedIn: [Abayizera Samuel](https://www.linkedin.com/in/abayizera-samuel-184845345/)  
+- Email: abayizeraeaz@gmail.com
 
 ## 🙏 Acknowledgments
 
@@ -119,5 +140,5 @@ Your Name
 ## 📫 Contact
 
 For any questions or feedback, please reach out through:
-- Email: your.email@example.com
-- LinkedIn: [Your Name](https://linkedin.com/in/yourprofile)
+- Email: abayizeraeaz@gmail.com  
+- LinkedIn: [Abayizera Samuel](https://www.linkedin.com/in/abayizera-samuel-184845345/)
