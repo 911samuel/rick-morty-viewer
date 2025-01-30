@@ -1,3 +1,4 @@
+// types/index.ts
 export interface Episode {
   id: number;
   name: string;
@@ -21,4 +22,28 @@ export interface ApiResponse {
     prev: string | null;
   };
   results: Episode[];
+}
+
+export interface SearchBarProps {
+  value: string;
+  onChange: (value: string) => void;
+  placeholder?: string;
+}
+
+export interface PaginationProps {
+  currentPage: number;
+  totalPages: number;
+  onPageChange: (page: number) => void;
+}
+
+export interface EpisodeCardProps {
+  episode: Episode;
+  characters: Record<string, Character>;
+}
+
+export interface EpisodeListProps {
+  episodes: Episode[];
+  characters: Record<string, Character>;
+  loading: boolean;
+  searchTerm: string;
 }

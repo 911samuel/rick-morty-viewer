@@ -83,6 +83,7 @@ export const EpisodeViewer = () => {
           episodes={filteredEpisodes}
           characters={characters}
           loading={loading}
+          searchTerm={searchTerm}
         />
 
         <Pagination

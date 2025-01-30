@@ -1,26 +1,17 @@
+// components/EpisodeList.tsx
 "use client";
 
 import React from "react";
 import { EpisodeCard } from "./EpisodeCard";
-import { Episode, Character } from "@/types";
+import type { EpisodeListProps } from "@/types";
 import { Loader2, SearchX } from "lucide-react";
-import { SearchBar } from "./SearchBar";
-import { Alert, AlertDescription } from "./ui/alert";
-import { Pagination } from "./Pagination";
 
-interface EpisodeListProps {
-  episodes: Episode[];
-  characters: Record<string, Character>;
-  loading: boolean;
-  searchTerm?: string;
-}
-
-export const EpisodeList = ({
+export const EpisodeList: React.FC<EpisodeListProps> = ({
   episodes,
   characters,
   loading,
   searchTerm,
-}: EpisodeListProps) => {
+}) => {
   if (loading) {
     return (
       <div className="flex justify-center items-center h-64">
@@ -54,45 +45,6 @@ export const EpisodeList = ({
           characters={characters}
         />
       ))}
-    </div>
-  );
-};
-
-// Update EpisodeViewer.tsx to pass searchTerm
-export const EpisodeViewer = () => {
-  // ... existing state and functions ...
-
-  return (
-    <div className="min-h-screen bg-[#1a1a1a] p-4">
-      <div className="max-w-7xl mx-auto">
-        <header className="text-center mb-12 pt-8">
-          <h1 className="text-5xl font-bold text-green-400 mb-6">
-            Rick and Morty Episodes
-          </h1>
-          <SearchBar value={searchTerm} onChange={setSearchTerm} />
-        </header>
-
-        {error && (
-          <Alert variant="destructive" className="mb-4">
-            <AlertDescription>{error}</AlertDescription>
-          </Alert>
-        )}
-
-        <EpisodeList
-          episodes={filteredEpisodes}
-          characters={characters}
-          loading={loading}
-          searchTerm={searchTerm}
-        />
-
-        {filteredEpisodes.length > 0 && (
-          <Pagination
-            currentPage={currentPage}
-            totalPages={totalPages}
-            onPageChange={setCurrentPage}
-          />
-        )}
-      </div>
     </div>
   );
 };
